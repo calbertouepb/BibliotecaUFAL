@@ -1,0 +1,131 @@
+Biblioteca Central da UFAB
+
+A Biblioteca Central da UFAB - Universidade Federal Alto Bodocongó não dispõe de
+um controle automatizado dos itens do acervo. Devido a isso, os processos de
+reserva, locação, renovação e devolução são realizados por meios de fichas
+classificadas por cursos, semestres, anos, etc. A busca pelos registros dos
+alunos é uma tarefa manual. Um pequeno atraso na recuperação de uma ficha
+incorre no aumento das filas. A facilidade na perda de registros também abre uma
+brecha quanto à questão da segurança.
+
+O serviço de empréstimos de itens é diferenciado. Alunos de graduação podem
+reservar um item por 15 dias, renovável uma vez por igual intervalo de tempo. 
+Alunos de pós-graduação (especialização, mestrado e doutorado) podem reservar um
+item por 30 dias, sem limites de renovação. A multa por item e por dia de atraso
+é de R$ 0,50.
+
+Há restrições triviais quanto ao empréstimo: alunos inadimplentes não podem
+usufruir de qualquer serviço na biblioteca, exceto o de quitar suas multas. É
+importante, ainda, ressaltar que alunos de qualquer nível só podem realizar
+empréstimos se estiverem devidamente matriculados no período corrente referente
+ao empréstimo.
+
+O sistema deverá apresentar um controle de autenticação de funcionários nos
+níveis de operador e administrador do sistema. Ao administrador compete o acesso
+irrestrito ao sistema bem como todas as suas funcionalidades. Ao operador
+compete apenas: realização de empréstimos, reservas, renovações e devoluções;
+cadastro e edição do registro de alunos.
+
+A UFAB oferece os seguintes cursos de graduação: Administração, Ciência
+da Computação, Direito, Engenharia Elétrica, Engenharia Espacial, Engenharia
+Mecatrônica, Matemática, Medicina, Nutrição, Odontologia, Psicologia e
+Veterinária. Os cursos de pós-graduação oferecidos são: Ciência da Computação,
+Engenharia Elétrica, Engenharia Espacial, Engenharia Mecatrônica e Psicologia.
+
+Atenção! O sistema não poderá utilizar banco de dados. Todos os dados
+persistentes devem ser armazenados em arquivo. É fortemente recomendado o uso de
+serialização de objetos.
+
+Para o 1o milestone (03/02) será exigido:
+o Casos de uso de 1 a 5 sem persistência
+  o não é necessário manipular arquivos nessa etapa
+o Diagramas UML
+o Testes
+o Versão inicial do Javadoc
+
+Para o 2o milestone (25/02) será exigido:
+o Todos os casos de uso
+o Atualização dos Diagramas UML
+o Testes
+o Atualização do Javadoc
+o Refatoração da entidade Aluno
+  o Agora este também pode acessar o sistema
+  o Consulte a especificação do Caso de Uso 3 para maiores informações.
+
+Descrição dos casos de uso:
+
+Caso de uso 1: Manter registros dos itens do acervo
+O administrador pode criar um novo registro de itens do acervo, bem como editar
+e excluir esse registro. Compreende-se por itens do acervo, principalmente:
+livros, revistas, jornais, anais de congresso, teses, dissertações, monografias,
+DVDs e CDs. Para facilitar, assuma teses, dissertações e monografias como
+trabalhos de conclusão; e adote para CD’s e DVD’s o nome mídias eletrônicas.
+
+A seguir, os atributos exigidos para cada tipo:
+# Livros devem apresentar, no mínimo, os seguintes atributos: ISBN, título,
+autor(es), editora, ano de publicação, edição, número de páginas, área (do
+conhecimento) e tema (subárea).
+# Revistas devem apresentar, no mínimo, os seguintes atributos: título, editora,
+data de publicação, edição e número de páginas.
+# Jornais devem apresentar, no mínimo, os seguintes atributos: título, data e
+edição.
+# Anais de congresso devem apresentar, no mínimo, os seguintes atributos: tipo
+(artigo, pôster ou resumo), título, autor(es), nome do congresso, ano de
+publicação e local.
+# Trabalhos de conclusão devem apresentar, no mínimo, os seguintes atributos:
+título, autor(es), orientador(es), tipo (monografia, tese ou dissertação),ano de
+defesa e local.
+# Mídias eletrônicas devem apresentar, no mínimo, os seguintes atributos: título,
+tipo (CD ou DVD) e data de gravação.
+
+Caso de uso 2: Criar e editar registros dos cursos de graduação e pós­-graduação
+Como também não há um sistema de controle acadêmico na UFAB, os registros dos
+cursos devem ser mantidos no próprio sistema da biblioteca. Por motivos de
+segurança e controle, não é possível excluí-los. Para os cursos, você pode
+considerar apenas o nome, a área e o tipo (graduação ou pós-graduação).
+
+Caso de uso 3: Criar e editar registros dos alunos
+Qualquer usuário do sistema pode realizar a tarefa de criar e editar registros
+de alunos. É necessário diferenciar os que são de graduação e os que são de
+pós-graduação devido às diferentes condições de empréstimo. Todo aluno deve ter:
+matrícula, CPF, RG, naturalidade, nome completo, nome da mãe, endereço, telefone
+para contato, curso o qual é vinculado, ano, período de ingresso e SENHA PARA ACESSO.
+O código da matrícula deve apresentar o seguinte formato: GCP-101016; no qual
+temos
+as seguintes correspondências:
+# Nível: G - graduação, E - especialização, M - mestrado e D - doutorado;
+# Curso: CP - Ciência da Computação, etc. A equipe de desenvolvimento é livre
+para criar seu próprio código de curso.
+# Ano de Ingresso: 10 - corresponde a 2010
+# Período de Ingresso: 1 - 1o período do ano de ingresso
+# Código: 016. Um número arbitrário, porém exclusivo para cada aluno.
+
+Caso de uso 4: Excluir registros dos alunos
+Apenas o administrador tem privilégio para realizar essa tarefa.
+
+Caso de uso 5: Manter registros dos funcionários
+Criar, editar e excluir registros dos funcionários (usuários) do sistema.
+Assuma, no mínimo, os seguintes campos: CPF, nome completo, RG, naturalidade,
+endereço, telefone, e-mail, nome de usuário e senha.
+
+Caso de uso 6: Realizar empréstimos/reservas/renovações/devoluções
+Qualquer usuário do sistema pode registrar a movimentação dos itens do acervo. É
+importante ressaltar que ao excluir um registro de aluno, seus registros de
+empréstimo também são excluídos. Atentar que só será possível realizar uma
+renovação se o item não tiver nenhuma reserva previamente feita. Ao solicitar a
+reserva, o usuário deverá ser informado da data em que irá pegar o livro e uma
+opção para receber uma notificação via e-mail caso desejar.
+
+Caso de uso 7: Quitar dívida de aluno
+Qualquer usuário do sistema pode quitar a dívida do usuário. Fazendo isso o
+usuário estará liberado para efetuar novas movimentações. Ao final do período,
+será enviado um relatório (pode ser via e-mail) com os alunos pendentes de
+pagamento para que dessa forma sejam bloqueadas as suas matrículas. Dessa forma,
+o sistema deverá manter a data de vigência de cada semestre.
+
+Caso de uso 8: Módulo de Pesquisa dos Itens do Acervo
+Deverá ser possível permitir a busca por registros de maneiras otimizadas. O
+sistema deverá mostrar pelo menos 3 opções de busca, onde o mesmo também deve
+mostrar o tempo gasto para realizar a pesquisa no arquivo para seja possível
+realizar uma comparação. A busca poderá ser realizada através do título, autor
+ou palavra-chave.
